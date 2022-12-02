@@ -1,10 +1,2 @@
-cd /var/www/bazil-test
-
-if [ "$APPLICATION_NAME" == "Bazil-Test-Application-node-sandbox" ]
-then
-   cp .env.example .env
-else
-   cp .env.sandbox .env
-fi
-
-npm install
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 184354826547.dkr.ecr.us-east-1.amazonaws.com
+docker pull 184354826547.dkr.ecr.us-east-1.amazonaws.com/bazil-test-ecr:latest

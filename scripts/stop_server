@@ -1,2 +1,2 @@
-cd /var/www/bazil-test
-npm run stop
+docker rm -f bazil-test-ecr || true
+docker rmi bazil-test-ecr || true
