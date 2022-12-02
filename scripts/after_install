@@ -1,0 +1,10 @@
+cd /var/www/bazil-test
+
+if [ "$APPLICATION_NAME" == "Bazil-Test-Application-node-sandbox" ]
+then
+   cp .env.example .env
+else
+   cp .env.sandbox .env
+fi
+
+npm install

@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      #- $(aws ecr get-login --no-include-email --region ap-south-1)
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 184354826547.dkr.ecr.us-east-1.amazonaws.com
+  build:
+    commands:
+      - "echo Build started on `date`"
+      - "echo Building the Docker image..."
+      - "docker build -t bazil-test-ecr ."
+      - "docker tag bazil-test-ecr:latest 184354826547.dkr.ecr.us-east-1.amazonaws.com/bazil-test-ecr:latest"
+  post_build:
+    commands:
+      - "echo Build completed on `date`"
+      - "echo Pushing the Docker image..."
+      - "docker push 184354826547.dkr.ecr.us-east-1.amazonaws.com/bazil-test-ecr:latest"
+      - printf '[{"name":"bazil-test-ecr","184354826547.dkr.ecr.us-east-1.amazonaws.com":"%s"}]' 184354826547.dkr.ecr.us-east-1.amazonaws.com/bazil-test-ecr:latest > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
