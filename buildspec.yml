@@ -9,7 +9,7 @@ phases:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - "docker build -t bazil-test-ecr ."
+      - "docker build -t bazil-test-ecr . --no-cache"
       - "docker tag bazil-test-ecr:latest 184354826547.dkr.ecr.us-east-1.amazonaws.com/bazil-test-ecr:latest"
   post_build:
     commands:
