@@ -1,1 +1,2 @@
 docker run --name bazil-test-ecr --restart unless-stopped -p 3000:3000  -d bazil-test-ecr:latest
+#docker run --name hydra-dev-node --restart unless-stopped -p 3000:3000  -d hydra-dev-node:latest
