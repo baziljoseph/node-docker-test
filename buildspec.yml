@@ -9,6 +9,9 @@ phases:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
+      - "ls -ltrha"
+      - "cp .env.example .env"
+      - "ls -ltrha && cat .env"
       - "docker build -t $IMAGE_REPO_NAME . --no-cache"
       - "docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG"
   post_build:
