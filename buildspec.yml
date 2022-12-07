@@ -4,15 +4,15 @@ phases:
   pre_build:
     commands:
       #- $(aws ecr get-login --no-include-email --region ap-south-1)
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 184354826547.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
   build:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - "docker build -t bazil-test-ecr . --no-cache"
-      - "docker tag bazil-test-ecr:latest 184354826547.dkr.ecr.us-east-1.amazonaws.com/bazil-test-ecr:latest"
+      - "docker build -t $IMAGE_REPO_NAME . --no-cache"
+      - "docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG"
   post_build:
     commands:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
-      - "docker push 184354826547.dkr.ecr.us-east-1.amazonaws.com/bazil-test-ecr:latest"
+      - "docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG"
