@@ -16,6 +16,3 @@ phases:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
       - "docker push 184354826547.dkr.ecr.us-east-1.amazonaws.com/bazil-test-ecr:latest"
-      - printf '[{"name":"bazil-test-ecr","184354826547.dkr.ecr.us-east-1.amazonaws.com":"%s"}]' 184354826547.dkr.ecr.us-east-1.amazonaws.com/bazil-test-ecr:latest > imagedefinitions.json
-artifacts:
-  files: imagedefinitions.json
